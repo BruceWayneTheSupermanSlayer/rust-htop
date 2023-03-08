@@ -12,7 +12,7 @@ jobs:
           toolchain: stable
           override: true
           profile: minimal
-      - uses: actions-rs/cargo@v2
+      - uses: actions-rs/cargo@v1
         with:
           command: check
   test:
@@ -25,7 +25,7 @@ jobs:
           toolchain: stable
           override: true
           profile: minimal
-      - uses: actions-rs/cargo@v2
+      - uses: actions-rs/cargo@v1
         with:
           command: test
   fmt:
@@ -38,7 +38,7 @@ jobs:
           toolchain: stable
           override: true
           profile: minimal
-      - uses: actions-rs/cargo@v2
+      - uses: actions-rs/cargo@v1
         with:
           command: fmt
           args: --all --check
@@ -52,7 +52,7 @@ jobs:
           toolchain: stable
           override: true
           profile: minimal
-      - uses: actions-rs/cargo@v2
+      - uses: actions-rs/cargo@v1
         with:
           command: clippy
           args: --all --all-targets -- -D warnings
