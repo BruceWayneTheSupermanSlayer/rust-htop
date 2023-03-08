@@ -1,0 +1,57 @@
+name: Continuous Integration
+on: [ push, pull_request ]
+
+jobs:
+  name: Check
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions-rs/toolchain@v2
+      with:
+        toolchain: stable
+        override: true
+        profile: minimal
+    - uses: actions-rs/cargo@v2
+      with:
+        command: check
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v2
+        with:
+          toolchain: stable
+          override: true
+          profile: minimal
+      - uses: actions-rs/cargo@v2
+        with:
+          command: test
+  fmt:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v2
+        with:
+          toolchain: stable
+          override: true
+          profile: minimal
+      - uses: actions-rs/cargo@v2
+        with:
+          command: fmt
+          args: --all --check
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v2
+        with:
+          toolchain: stable
+          override: true
+          profile: minimal
+      - uses: actions-rs/cargo@v2
+        with:
+          command: clippy
+          args: --all --all-targets -- -D warnings
